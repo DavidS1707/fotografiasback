@@ -26,23 +26,23 @@ class Subscription extends Component
 
         //capturar error
         try{
-            if(auth()->user()->subscribed('FOTOGRAFO PLANES')){
-                auth()->user()->subscription('FOTOGRAFO PLANES')->swap($plan);
+            if(auth()->user()->subscribed('parcial')){
+                auth()->user()->subscription('parcial')->swap($plan);
                 return;
             }
-            auth()->user()->newSubscription('FOTOGRAFO PLANES',$plan)->create($this->defaultPaymentMethod->id);
+            auth()->user()->newSubscription('parcial',$plan)->create($this->defaultPaymentMethod->id);
             
             auth()->user()->refresh();
 
             //------------EL PLAN ES FOTOGRAFO--------------//
-            if($plan ==='price_1OBACXI8FqBZA7t0ja165hbQ'){
+            if($plan ==='price_1OHAbwIb7vg6dnmcDPJgYEbs'){
                 $user = Auth::user();
                 $user->update(['rol_id' => 2]);
                 $user->roles()->detach();
                 $user->syncRoles(2);
             }
             //------------EL PLAN ES ORGANIZADOR--------------//
-            if($plan ==='price_1OBABDI8FqBZA7t0Wg2drQyV'){
+            if($plan ==='price_1OHAbxIb7vg6dnmckOXDbIBS'){
                 $user = Auth::user();
                 $user->update(['rol_id' => 1]);
                 $user->roles()->detach();
@@ -56,12 +56,12 @@ class Subscription extends Component
 
     //canelar subscripcion
     public function cancelSubscription(){
-        auth()->user()->subscription('FOTOGRAFO PLANES')->cancel();
+        auth()->user()->subscription('parcial')->cancel();
     }
 
     //reanudar subscription
     public function resumeSubscription(){
-        auth()->user()->subscription('FOTOGRAFO PLANES')->resume();
+        auth()->user()->subscription('parcial')->resume();
     }
     
     public function render()
