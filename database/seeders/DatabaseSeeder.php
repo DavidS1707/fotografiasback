@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +20,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $organizador= Role::create(['name'=>'Organizador']);
+        $fotografo= Role::create(['name'=>'Fotografo']);
+        $invitado= Role::create(['name'=>'Cliente']);
+
+        Permission::create(['name'=>'Organizador'])->syncRoles($organizador);
+        Permission::create(['name'=>'Fotografo'])->syncRoles($fotografo);
+        Permission::create(['name'=>'Cliente'])->syncRoles($invitado,$organizador,$fotografo);
     }
 }
