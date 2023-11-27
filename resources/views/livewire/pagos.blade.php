@@ -24,7 +24,7 @@
         <footer class="px-8 py-6 bg-gray-50 border-t border-gray-200">
             <div class="flex justify-end">
                 <x-button id="card-button" data-secret="{{ $intent->client_secret }}">
-                    Agregar Metodo de Pago
+                    Update Payment Method
                 </x-button>
             </div>
 
@@ -59,38 +59,53 @@
                 </h1>
             </header>
 
-            <div class="container py-4">
-                <ul class="list-group">
+            <div class="px-8 py-6">
+
+                <ul class="divide-y divide-gray-200">
                     @foreach ($paymentMethods as $paymentMethod)
-                        <li class="list-group-item d-flex justify-content-between" wire:key="{{ $paymentMethod->id }}">
+                        <li class="py-2 flex justify-between" wire:key="{{ $paymentMethod->id }}">
+
                             <div>
                                 <p>
-                                    <span class="font-weight-bold">{{ $paymentMethod->billing_details->name }}</span>
+                                    <span class="font-semibold">{{ $paymentMethod->billing_details->name }}</span>
                                     xxxx-{{ $paymentMethod->card->last4 }}
-                                    @if ($this->defaultPaymentMethod && $this->defaultPaymentMethod->id == $paymentMethod->id)
-                                        <span class="badge bg-primary text-white">Predeterminado</span>
+                                    {{-- Verificar cual es el metodo de pago predeterminado --}}
+                                    {{-- @if (auth()->user()->defaultPaymentMethod()->id == $paymentMethod->id) es una opcion --}}
+                                    @if ($this->defaultPaymentMethod->id == $paymentMethod->id)
+                                    {{-- @if ($this->defaultPaymentMethod && $this->defaultPaymentMethod->id == $paymentMethod->id) --}}
+                                    <span
+                                        class="ml-2 bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                                        Predeterminado
+                                    </span>
                                     @endif
+
                                 </p>
-                                <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}</p>
+                                <p>Expira: {{ $paymentMethod->card->exp_month }}/{{ $paymentMethod->card->exp_year }}
+                                </p>
                             </div>
-            
-                            @if (!$this->defaultPaymentMethod || $this->defaultPaymentMethod->id != $paymentMethod->id)
-                                <div class="btn-group">
-                                    <button class="btn btn-outline-primary" wire:click="defaultPaymentMethod('{{ $paymentMethod->id }}')"
-                                        wire:target="defaultPaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                    <button class="btn btn-outline-danger" wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')"
-                                        wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')" wire:loading.attr="disabled">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </div>
+
+                            @if ($this->defaultPaymentMethod->id != $paymentMethod->id)
+                            {{-- @if ($this->defaultPaymentMethod && $this->defaultPaymentMethod->id != $paymentMethod->id) --}}
+                            <div class="flex space-x-4">
+                                <button class="disabled:opacity-25"
+                                    wire:click="defaultPaymentMethod('{{ $paymentMethod->id }}')"
+                                    wire:target="defaultPaymentMethod('{{ $paymentMethod->id }}')"
+                                    wire:loading.attr="disabled">
+                                    <i class="fa-regular fa-star"></i>
+                                </button>
+                                <button class="disabled:opacity-25"
+                                    wire:click="deletePaymentMethod('{{ $paymentMethod->id }}')"
+                                    wire:target="deletePaymentMethod('{{ $paymentMethod->id }}')"
+                                    wire:loading.attr="disabled">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
                             @endif
+
                         </li>
                     @endforeach
                 </ul>
             </div>
-            
 
         </section>
     @endif
@@ -99,7 +114,9 @@
         <script src="https://js.stripe.com/v3/"></script>
 
         <script>
+            console.log('entro siii');
             const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+            console.log(stripe);
             const elements = stripe.elements();
             const cardElement = elements.create('card');
 
@@ -155,5 +172,5 @@
                 }
             });
         </script>
-        @endpush
+    @endpush
 </div>
