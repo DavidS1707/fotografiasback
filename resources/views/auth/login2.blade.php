@@ -2,22 +2,21 @@
 
 <body>
     <section>
-        <form action="{{ route('login') }}" method="post">
-            <h1>Iniciar Sesión</h1>
+        <form>
+            <h1>Login</h1>
             <div class="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
                 <input type="email" required>
-                <label for="">Correo</label>
+                <label for="">Email</label>
             </div>
             <div class="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
                 <input type="password" required>
-                <label for="">Contraseña</label>
+                <label for="">Password</label>
             </div>
-            <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>
+            <button>Log in</button>
             <div class="register">
-                <p>No tienes una cuenta? <a href="{{ route('register') }}" class="text-white-50 fw-bold">Registrate!</a>
-                </p>
+                <p>Don't have a account <a href="#">Register</a></p>
             </div>
         </form>
     </section>
