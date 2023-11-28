@@ -62,16 +62,22 @@
                     <thead>
                         <tr>
                             <th>Nombre del Evento</th>
+                            <th>fecha del Evento</th>
+                            <th>Ubicacion del Evento</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($eventos as $evento)
                             <tr>
-                                <td>{{ $evento->titulo_evento }}</td>
+                                <td>{{ $evento->title_evento }}</td>
+                                <td>{{ $evento->fecha_evento }}</td>
+                                <td>{{ $evento->ubicacion }}</td>
                                 <td>
-                                    <a href="{{ route('ver_fotos_evento', ['id_evento' => $evento->id]) }}"
+                                    <a href="{{ route('abrir_catalogo_evento', ['id_evento' => $evento->id]) }}"
                                         class="btn btn-info">Ver Fotos</a>
+                                        <a href="{{ route('abrir_registrarinvitado', ['id_evento' => $evento->id]) }}"
+                                            class="btn btn-info">Invitados</a>
                                     <!-- Puedes agregar más acciones según tus necesidades -->
                                 </td>
                             </tr>

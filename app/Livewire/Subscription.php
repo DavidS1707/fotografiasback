@@ -37,14 +37,14 @@ class Subscription extends Component
             //------------EL PLAN ES FOTOGRAFO--------------//
             if($plan ==='price_1OHAbwIb7vg6dnmcDPJgYEbs'){
                 $user = Auth::user();
-                $user->update(['rol_id' => 2]);
+                $user->update(['rol' => 2]);
                 $user->roles()->detach();
                 $user->syncRoles(2);
             }
             //------------EL PLAN ES ORGANIZADOR--------------//
             if($plan ==='price_1OHAbxIb7vg6dnmckOXDbIBS'){
                 $user = Auth::user();
-                $user->update(['rol_id' => 1]);
+                $user->update(['rol' => 1]);
                 $user->roles()->detach();
                 $user->syncRoles(1);
             }

@@ -86,16 +86,16 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="form-label">Fotografo</label>
-                            <select id="fotografo" name="fotografo"
-                                class="form-select me-3 @error('fotografo') is-invalid @enderror" style="width: 100%;"
-                                >
+                            <select id="fotografos" name="fotografos[]"
+                                class="form-select me-3 @error('fotografos') is-invalid @enderror" style="width: 100%;"
+                                multiple>
                                 @foreach ($fotografos as $fotografo)
                                     <option value="{{ $fotografo->id }}">{{ $fotografo->name }}</option>
                                     <!-- Reemplaza 'id' y 'name' con los nombres de los campos correspondientes en tu modelo User -->
                                 @endforeach
                             </select>
 
-                            @error('fotografos')
+                            @error('fotografo')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
