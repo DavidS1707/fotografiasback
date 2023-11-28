@@ -17,7 +17,7 @@
         <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
-        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
+        <a href="{{ route('abrir_miusuario') }}" class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();" <i
@@ -33,8 +33,8 @@
 
         <div class="head">
             <div class="col-div-6">
-                <span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ Dashboard</span>
-                <span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ Dashboard</span>
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ Eventos</span>
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ Eventos</span>
             </div>
 
             <div class="col-div-6">
@@ -52,11 +52,12 @@
         <div class="container">
             <div class="row mb-3">
                 <div class="col-md-12">
-                    <a href="{{ route('abrir_creareventos') }}" class="btn btn-primary" onclick="openForm()">Crear Nuevo
+                    <a href="{{ route('abrir_creareventos') }}" class="btn btn-primary" onclick="openForm()">Crear
+                        Nuevo
                         Evento</a>
                 </div>
             </div>
-
+            <br />
             @if (count($eventos) > 0)
                 <table class="table">
                     <thead>
@@ -75,9 +76,9 @@
                                 <td>{{ $evento->ubicacion }}</td>
                                 <td>
                                     <a href="{{ route('abrir_catalogo_evento', ['id_evento' => $evento->id]) }}"
-                                        class="btn btn-info">Ver Fotos</a>
-                                        <a href="{{ route('abrir_registrarinvitado', ['id_evento' => $evento->id]) }}"
-                                            class="btn btn-info">Invitados</a>
+                                        class="btn btn-primary">Ver Fotos</a>
+                                    <a href="{{ route('getevento', ['id' => $evento->id]) }}"
+                                        class="btn btn-primary">Invitados</a>
                                     <!-- Puedes agregar más acciones según tus necesidades -->
                                 </td>
                             </tr>

@@ -79,7 +79,7 @@ class EventoSocialesController extends Controller
         $directorioEvento = "public/eventos/evento_{$evento->id}";
         Storage::makeDirectory($directorioEvento);
 
-    
+
 
         // Devolver la ruta del código QR
         return redirect()->route('abrir_alleventos');
@@ -99,7 +99,7 @@ class EventoSocialesController extends Controller
         $invitados = Invitaciones::where('invitaciones.evento_id', $id)->select('*')->get();
         //dd($evento,$invitados);
         $mensaje = Session::get('mensaje');
-        return view('eventos.adminevento')->with('datos', $datos)->with('evento', $evento)->with('invitados', $invitados)->with('mensaje', $mensaje);
+        return view('eventos.ver-invitados')->with('datos', $datos)->with('evento', $evento)->with('invitados', $invitados)->with('mensaje', $mensaje);
     }
     // Método para eliminar un evento
     public function eliminarEvento($id)
@@ -133,7 +133,7 @@ class EventoSocialesController extends Controller
         $evento = Eventos::where('eventos.id', $id_evento)->select('*')->first();
 
 
-        return view('eventos.create_invitado')->with('datos', $datos)->with('evento', $evento);
+        return view('eventos.registrar-invitado')->with('datos', $datos)->with('evento', $evento);
     }
 
     public function registrar_invitacion(Request $request)

@@ -17,7 +17,7 @@
         <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
-        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
+        <a href="{{ route('abrir_miusuario') }}"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();" <i
@@ -32,8 +32,8 @@
     <div id="main">
         <div class="head">
             <div class="col-div-6">
-                <span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ Dashboard</span>
-                <span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ Dashboard</span>
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav">☰ Crear evento</span>
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav2">☰ Crear evento</span>
             </div>
 
             <div class="col-div-6">
@@ -64,14 +64,14 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="form-label">Fecha</label>
+                                <label class="form-label">Fecha (AA-MM-DD)</label>
                                 <input class="form-control cal-event-date-start" id="fecha" name="single-date-pick"
                                     type="text" />
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="form-label">Hora</label>
+                                <label class="form-label">Hora (HH:MM:SS)</label>
                                 <input class="form-control input-single-timepicker" id="evento"
                                     name="input-timepicker" type="text" />
                             </div>
@@ -87,8 +87,7 @@
                         <div class="form-group col-lg-6">
                             <label class="form-label">Fotografo</label>
                             <select id="fotografo" name="fotografo"
-                                class="form-select me-3 @error('fotografo') is-invalid @enderror" style="width: 100%;"
-                                >
+                                class="form-select me-3 @error('fotografo') is-invalid @enderror" style="width: 100%;">
                                 @foreach ($fotografos as $fotografo)
                                     <option value="{{ $fotografo->id }}">{{ $fotografo->name }}</option>
                                     <!-- Reemplaza 'id' y 'name' con los nombres de los campos correspondientes en tu modelo User -->
