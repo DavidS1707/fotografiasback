@@ -15,7 +15,8 @@
         <a href="{{ route('home') }}" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
         <a href="{{ route('abrir_alleventos') }}" class="icon-a"><i class="fa fa-calendar icons"></i> Eventos</a>
         <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
-        <a href="#"class="icon-a"><i class="fa fa-shopping-bag icons"></i> Suscripciones</a>
+        <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
+            Suscripciones</a>
         <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault();

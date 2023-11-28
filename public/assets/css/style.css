@@ -4,6 +4,7 @@ body{
 	background-color:#1b203d;
 	overflow: hidden;
 	font-family: system-ui;
+  overflow-y: scroll;
 }
 .clearfix{
 	clear: both;
@@ -228,4 +229,68 @@ td, th {
 .btn-primary:hover {
   background-color: #4caf50; /* Verde cuando se pasa el mouse */
   color: black; /* Color de texto negro cuando se pasa el mouse */
+}
+
+/* Estilos del formulario */
+.card-border {
+  border: 1px solid #81818140;
+  background-color: #333a52; /* Nuevo color de fondo más oscuro */
+  padding: 20px; /* Espaciado interno */
+  margin-bottom: 20px; /* Separación entre formularios */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Separación entre campos */
+}
+
+.form-label {
+  color: white;
+}
+
+.form-control {
+  background-color: #272c4a;
+  color: white;
+  border: 1px solid #81818140; /* Borde ligeramente más claro */
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.invalid-feedback {
+  color: #f7403b;
+}
+/* Estilos adicionales para alinear los campos */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-lg-6 {
+  flex: 0 0 calc(50% - 10px); /* Asegura que cada campo ocupe el 50%, con 10px de espacio entre ellos */
+  margin-right: 20px; /* Espacio entre campos */
+}
+.form-group.col-lg-12 {
+  flex: 0 0 100%; /* Ocupa todo el ancho disponible */
+  margin-right: 0; /* No hay margen a la derecha para este elemento */
+}
+
+.col-sm-6 {
+  flex: 0 0 calc(50% - 10px); /* Asegura que cada campo ocupe el 50%, con 10px de espacio entre ellos */
+  margin-right: 20px; /* Espacio entre campos */
+}
+
+.btn-cancel {
+  background-color: #6a5acd; /* Color morado para el botón */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Cambia el color al pasar el mouse */
+.btn-cancel:hover {
+  background-color: #f7403b; /* Cambia a rojo en el estado hover */
 }
