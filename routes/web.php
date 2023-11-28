@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Eventos\EventoSocialesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -24,11 +25,11 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'can:Organizador']], function () {
     // Rutas Autenticadas que solo pueden ser accedidas por usuarios con el rol "Organizador"
-    Route::get('abrir_creareventos', [EventoController::class, 'abrir_creareventos'])->name('abrir_creareventos');
-    Route::post('registrar_evento', [EventoController::class, 'registrar_evento'])->name('registrar_evento');
-    Route::get('abrir_alleventos', [EventoController::class, 'abrir_alleventos'])->name('abrir_alleventos');
-    Route::delete('/eventos/{id}', [EventoController::class, 'eliminarEvento'])->name('eliminarEvento');
-    Route::get('/getevento/{id}', [EventoController::class, 'getevento'])->name('getevento');
+    Route::get('abrir_creareventos', [EventoSocialesController::class, 'abrir_creareventos'])->name('abrir_creareventos');
+    Route::post('registrar_evento', [EventoSocialesController::class, 'registrar_evento'])->name('registrar_evento');
+    Route::get('abrir_alleventos', [EventoSocialesController::class, 'abrir_alleventos'])->name('abrir_alleventos');
+    Route::delete('/eventos/{id}', [EventoSocialesController::class, 'eliminarEvento'])->name('eliminarEvento');
+    Route::get('/getevento/{id}', [EventoSocialesController::class, 'getevento'])->name('getevento');
 
 
 
@@ -56,7 +57,11 @@ Route::group(['middleware' => ['auth', 'can:Cliente']], function () {
     Route::post('cambiar_contraseña', [UsersController::class, 'cambiar_contraseña'])->name('cambiar_contraseña');
     Route::post('registrar_3imagenes', [UsersController::class, 'registrar_3imagenes'])->name('registrar_3imagenes');
 
-
+    Route::get('abrir_creareventos', [EventoSocialesController::class, 'abrir_creareventos'])->name('abrir_creareventos');
+    Route::post('registrar_evento', [EventoSocialesController::class, 'registrar_evento'])->name('registrar_evento');
+    Route::get('abrir_alleventos', [EventoSocialesController::class, 'abrir_alleventos'])->name('abrir_alleventos');
+    Route::delete('/eventos/{id}', [EventoSocialesController::class, 'eliminarEvento'])->name('eliminarEvento');
+    Route::get('/getevento/{id}', [EventoSocialesController::class, 'getevento'])->name('getevento');
 
     Route::get('abrir_suscripciones', [HomeController::class, 'abrir_suscripciones'])->name('abrir_suscripciones');
 });

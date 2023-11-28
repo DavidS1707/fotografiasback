@@ -3,15 +3,16 @@
 <body>
     <section>
         <form action="{{ route('login') }}" method="post">
+            @csrf
             <h1>Iniciar Sesión</h1>
             <div class="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="email" required>
+                <input type="email" name="email" id="email" required>
                 <label for="">Correo</label>
             </div>
             <div class="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" required>
+                <input type="password" name="password" id="password" required>
                 <label for="">Contraseña</label>
             </div>
             <button class="btn btn-outline-light btn-lg px-5" type="submit">Ingresar</button>

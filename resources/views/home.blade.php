@@ -12,13 +12,21 @@
 
     <div id="mySidenav" class="sidenav">
         <p class="logo"><span>2do</span>Parcial</p>
-        <a href="#" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
-        <a href="#"class="icon-a"><i class="fa fa-users icons"></i> Customers</a>
-        <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Projects</a>
-        <a href="#"class="icon-a"><i class="fa fa-shopping-bag icons"></i> Orders</a>
-        <a href="#"class="icon-a"><i class="fa fa-tasks icons"></i> Inventory</a>
-        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Accounts</a>
-        <a href="#"class="icon-a"><i class="fa fa-list-alt icons"></i> Tasks</a>
+        <a href="{{ route('home') }}" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
+        <a href="{{ route('abrir_alleventos') }}" class="icon-a"><i class="fa fa-calendar icons"></i> Eventos</a>
+        <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
+        <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
+            Suscripciones</a>
+        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
+        <a href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();" <i
+            class="fa fa-sign-out icons"></i>
+            {{ __('Cerrar Sesión') }}
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
 
     </div>
     <div id="main">
@@ -32,21 +40,7 @@
             <div class="col-div-6">
                 <div class="profile">
                     <img src="{{ asset('assets/images/user.png') }}" class="pro-img" />
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Cerrar Sesión') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                    <p>{{ Auth::user()->name }}</p>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -55,120 +49,37 @@
         <div class="clearfix"></div>
         <br />
 
-        <div class="col-div-3">
-            <div class="box">
-                <p>67<br /><span>Customers</span></p>
-                <i class="fa fa-users box-icon"></i>
-            </div>
-        </div>
-        <div class="col-div-3">
-            <div class="box">
-                <p>88<br /><span>Projects</span></p>
-                <i class="fa fa-list box-icon"></i>
-            </div>
-        </div>
-        <div class="col-div-3">
-            <div class="box">
-                <p>99<br /><span>Orders</span></p>
-                <i class="fa fa-shopping-bag box-icon"></i>
-            </div>
-        </div>
-        <div class="col-div-3">
-            <div class="box">
-                <p>78<br /><span>Tasks</span></p>
-                <i class="fa fa-tasks box-icon"></i>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <br /><br />
-        <div class="col-div-8">
-            <div class="box-8">
-                <div class="content-box">
-                    <p>Top Selling Projects <span>Sell All</span></p>
-                    <br />
-                    <table>
-                        <tr>
-                            <th>Company</th>
-                            <th>Contact</th>
-                            <th>Country</th>
-                        </tr>
-                        <tr>
-                            <td>Alfreds Futterkiste</td>
-                            <td>Maria Anders</td>
-                            <td>Germany</td>
-                        </tr>
-                        <tr>
-                            <td>Centro comercial Moctezuma</td>
-                            <td>Francisco Chang</td>
-                            <td>Mexico</td>
-                        </tr>
-                        <tr>
-                            <td>Ernst Handel</td>
-                            <td>Roland Mendel</td>
-                            <td>Austria</td>
-                        </tr>
-                        <tr>
-                            <td>Island Trading</td>
-                            <td>Helen Bennett</td>
-                            <td>UK</td>
-                        </tr>
-
-
-                    </table>
-                </div>
-            </div>
+        <div>
+            <p>Bienvenido, {{ Auth::user()->name }}</p>
         </div>
 
-        <div class="col-div-4">
-            <div class="box-4">
-                <div class="content-box">
-                    <p>Total Sale <span>Sell All</span></p>
 
-                    <div class="circle-wrap">
-                        <div class="circle">
-                            <div class="mask full">
-                                <div class="fill"></div>
-                            </div>
-                            <div class="mask half">
-                                <div class="fill"></div>
-                            </div>
-                            <div class="inside-circle"> 70% </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(".nav").click(function() {
+                $("#mySidenav").css('width', '70px');
+                $("#main").css('margin-left', '70px');
+                $(".logo").css('visibility', 'hidden');
+                $(".logo span").css('visibility', 'visible');
+                $(".logo span").css('margin-left', '-10px');
+                $(".icon-a").css('visibility', 'hidden');
+                $(".icons").css('visibility', 'visible');
+                $(".icons").css('margin-left', '-8px');
+                $(".nav").css('display', 'none');
+                $(".nav2").css('display', 'block');
+            });
 
-        <div class="clearfix"></div>
+            $(".nav2").click(function() {
+                $("#mySidenav").css('width', '300px');
+                $("#main").css('margin-left', '300px');
+                $(".logo").css('visibility', 'visible');
+                $(".icon-a").css('visibility', 'visible');
+                $(".icons").css('visibility', 'visible');
+                $(".nav").css('display', 'block');
+                $(".nav2").css('display', 'none');
+            });
+        </script>
     </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(".nav").click(function() {
-            $("#mySidenav").css('width', '70px');
-            $("#main").css('margin-left', '70px');
-            $(".logo").css('visibility', 'hidden');
-            $(".logo span").css('visibility', 'visible');
-            $(".logo span").css('margin-left', '-10px');
-            $(".icon-a").css('visibility', 'hidden');
-            $(".icons").css('visibility', 'visible');
-            $(".icons").css('margin-left', '-8px');
-            $(".nav").css('display', 'none');
-            $(".nav2").css('display', 'block');
-        });
-
-        $(".nav2").click(function() {
-            $("#mySidenav").css('width', '300px');
-            $("#main").css('margin-left', '300px');
-            $(".logo").css('visibility', 'visible');
-            $(".icon-a").css('visibility', 'visible');
-            $(".icons").css('visibility', 'visible');
-            $(".nav").css('display', 'block');
-            $(".nav2").css('display', 'none');
-        });
-    </script>
-
 </body>
 
 

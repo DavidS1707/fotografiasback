@@ -154,7 +154,7 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  
+  background-color: #272a3d;
 }
 td, th {
   text-align: left;
@@ -211,4 +211,21 @@ td, th {
   z-index: 100;
   font-weight: 700;
   font-size: 2em;
+}
+
+.btn-primary {
+  background-color: #6a5acd; /* Morado */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-decoration: none; /* Para quitar el subrayado */
+  transition: background-color 0.3s, color 0.3s; /* Agregado para la transición del color del texto */
+}
+
+.btn-primary:hover {
+  background-color: #4caf50; /* Verde cuando se pasa el mouse */
+  color: black; /* Color de texto negro cuando se pasa el mouse */
 }

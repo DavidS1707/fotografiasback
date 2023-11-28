@@ -20,14 +20,15 @@ class EventoSocialesController extends Controller
      * ------------------------------------EVENTOS--------------------------------------------------
      * ---------------------------------------------------------------------------------------------
      */
-    public function abrir_alleventos(){
+    public function abrir_alleventos()
+    {
         $userId = Auth::id();
         $datos = User::where('users.id', $userId)
             ->select('*')->first();
 
-            $eventos= Eventos::where('eventos.organizador_id',$userId)->select('*')->get();
-            //dd($eventos);
-            return view('eventos.eventos')->with('datos', $datos)->with('eventos', $eventos);
+        $eventos = Eventos::where('eventos.organizador_id', $userId)->select('*')->get();
+        //dd($eventos);
+        return view('eventos.mis-eventos')->with('datos', $datos)->with('eventos', $eventos);
     }
     public function abrir_creareventos()
     {
@@ -35,21 +36,21 @@ class EventoSocialesController extends Controller
         $datos = User::where('users.id', $userId)
             ->select('*')->first();
 
-        $fotografos=User::where('users.rol_id', 2)
-        ->select('*')->get();
+        $fotografos = User::where('users.rol', 2)
+            ->select('*')->get();
 
-        return view('eventos.create_eventos')->with('datos', $datos)->with('fotografos',$fotografos);
+        return view('eventos.crear-evento')->with('datos', $datos)->with('fotografos', $fotografos);
     }
 
     public function registrar_evento(Request $request)
     {
-       
+
         $this->validate($request, [
             'titulo_evento' => 'required',
             'single-date-pick' => 'required',
             'input-timepicker' => 'required',
             'ubicacion' => 'required',
-            
+
             'descripcion' => 'required',
             'fotografos' => 'required',
         ], [
@@ -57,7 +58,7 @@ class EventoSocialesController extends Controller
             'single-date-pick.required' => 'La fecha del evento es requerida.',
             'input-timepicker.required' => 'La hora del evento es requerida.',
             'ubicacion.required' => 'La ubicación del evento es requerida.',
-            
+
             'descripcion.required' => 'La descripción del evento es requerida.',
             'fotografos.required' => 'Es requerido elegir un fotografo .',
         ]);
@@ -94,16 +95,17 @@ class EventoSocialesController extends Controller
 
 
 
-    public function  getevento($id){
+    public function  getevento($id)
+    {
         $userId = Auth::id();
         $datos = User::where('users.id', $userId)
             ->select('*')->first();
 
-            $evento= Eventos::where('eventos.id',$id)->select('*')->first();
-            $invitados = Invitaciones::where('invitaciones.evento_id',$id)->select('*')->get();
-            //dd($evento,$invitados);
-            $mensaje = Session::get('mensaje');
-            return view('eventos.adminevento')->with('datos', $datos)->with('evento', $evento)->with('invitados', $invitados)->with('mensaje', $mensaje);
+        $evento = Eventos::where('eventos.id', $id)->select('*')->first();
+        $invitados = Invitaciones::where('invitaciones.evento_id', $id)->select('*')->get();
+        //dd($evento,$invitados);
+        $mensaje = Session::get('mensaje');
+        return view('eventos.adminevento')->with('datos', $datos)->with('evento', $evento)->with('invitados', $invitados)->with('mensaje', $mensaje);
     }
     // Método para eliminar un evento
     public function eliminarEvento($id)
@@ -124,7 +126,7 @@ class EventoSocialesController extends Controller
         return redirect()->route('abrir_alleventos');
     }
 
-        /**---------------------------------------------------------------------------------------------
+    /**---------------------------------------------------------------------------------------------
      * ------------------------------------INVITACIONES-------------------------------------------------
      * ---------------------------------------------------------------------------------------------
      */
@@ -142,7 +144,7 @@ class EventoSocialesController extends Controller
 
     public function registrar_invitacion(Request $request)
     {
-       
+
         $this->validate($request, [
             'nombre' => 'required',
             'email' => 'required',
@@ -174,7 +176,7 @@ class EventoSocialesController extends Controller
         // Generar el código QR
         QrCode::format('svg')->size(300)->generate($accionUrl, storage_path("app/{$directorio}{$invitacion->id}.svg"));
 
-        
+
 
         return redirect()->route('getevento', ['id' => $invitacion->evento_id]);
     }

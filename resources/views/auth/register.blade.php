@@ -2,26 +2,27 @@
 
 <body>
     <section>
-        <form action="{{ route('login') }}" method="post">
+        <form action="{{ route('register') }}" method="post">
+            @csrf
             <h1>Registro</h1>
             <div class="inputbox">
                 <ion-icon name="name"></ion-icon>
-                <input type="text" required>
+                <input type="text" name="name" id="name" required>
                 <label for="">Nombre</label>
             </div>
             <div class="inputbox">
                 <ion-icon name="mail-outline"></ion-icon>
-                <input type="email" required>
+                <input type="email" name="email" id="email" required>
                 <label for="">Correo</label>
             </div>
             <div class="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" required>
+                <input type="password" name="password" id="password" required>
                 <label for="">Contraseña</label>
             </div>
             <div class="inputbox">
                 <ion-icon name="lock-closed-outline"></ion-icon>
-                <input type="password" required>
+                <input type="password" name="password_confirmation" id="password-confirm" required>
                 <label for="">Confirmar contraseña</label>
             </div>
             <button class="btn btn-outline-light btn-lg px-5" type="submit">Registrarse</button>
