@@ -48,7 +48,7 @@ class FotosController extends Controller
 
         $evento = Eventos::where('eventos.id', $id_evento)->select('*')->first();
 
-        return view('fotografias.catalogo_evento')->with('datos', $datos)->with('evento', $evento)->with('catalogos', $catalogos);
+        return view('fotografia.subir-fotos-eventos')->with('datos', $datos)->with('evento', $evento)->with('catalogos', $catalogos);
     }
     public function abrir_fotos_catalogos($id_catalogo)
     {
@@ -146,8 +146,8 @@ class FotosController extends Controller
                     // Retrieve the details of the photo
                     $photo = FotosCatalogo::find($foto->id);
 
-                    
-                    
+
+
 
                     //AQUI ENVIA UNA NOTIFICACION DE TIPO PUSH 
                     $tokenEstatico = 'e9meGjRBTSWXMR55VNdlUH:APA91bF861BIxOA5AWwiXPI3u7yXeDHRzxOMAtRNLu49Cnb7r4L4UoPFPINzUNPciBgTj5pN9VqWH3Uei37VHOZoQvr6Ae2dzWXFr6sY0i_UR0fK351mrYZU75eDSgUycaN6O8JsINKq';
@@ -173,5 +173,4 @@ class FotosController extends Controller
 
         return response()->json(['message' => 'Notificaciones enviadas correctamente', 'datos' => $fotos]);
     }
-
 }

@@ -5,6 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Eventos\EventoSocialesController;
 use App\Http\Controllers\Fotografia\FotosController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\FotografoController;
+use App\Http\Controllers\InvitadosController;
+use App\Http\Controllers\PagoDigitalController;
+use App\Http\Controllers\SuscripcionController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -59,7 +64,11 @@ Route::group(['middleware' => ['auth', 'can:Cliente']], function () {
     Route::post('cambiar_contraseña', [UsersController::class, 'cambiar_contraseña'])->name('cambiar_contraseña');
     Route::post('registrar_3imagenes', [UsersController::class, 'registrar_3imagenes'])->name('registrar_3imagenes');
 
-
+    Route::get('abrir_eventosfotografos', [FotosController::class, 'abrir_eventosfotografos'])->name('abrir_eventosfotografos');
+    Route::get('abrir_catalogo_evento/{id_evento}', [FotosController::class, 'abrir_catalogo_evento'])->name('abrir_catalogo_evento');
+    Route::post('registrar_catalogo', [FotosController::class, 'registrar_catalogo'])->name('registrar_catalogo');
+    Route::post('IA_DETECTION', [FotosController::class, 'IA_DETECTION'])->name('IA_DETECTION');
+    Route::get('abrir_fotos_catalogos/{id_catalogo}', [FotosController::class, 'abrir_fotos_catalogos'])->name('abrir_fotos_catalogos');
 
     Route::get('abrir_suscripciones', [HomeController::class, 'abrir_suscripciones'])->name('abrir_suscripciones');
 });

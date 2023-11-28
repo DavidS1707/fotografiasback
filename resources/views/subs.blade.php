@@ -17,7 +17,7 @@
         <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
-        <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
+        <a href="{{ route('abrir_miusuario') }}" class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
         <a href="{{ route('logout') }}"
             onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();" <i

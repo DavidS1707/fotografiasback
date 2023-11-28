@@ -15,7 +15,7 @@
         <footer class="px-8 py-6 bg-gray-50 border-t border-gray-200">
             <div class="flex justify-end">
                 <x-button id="card-button" data-secret="{{ $intent->client_secret }}">
-                    Update Payment Method
+                    Actualizar Metodo de Pago
                 </x-button>
             </div>
         </footer>

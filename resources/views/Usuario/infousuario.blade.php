@@ -158,7 +158,30 @@
                                             <div class="form-group">
                                                 <div class="media align-items-center">
                                                     <div class="media-head me-5">
-                                                        <!-- Tu lógica para mostrar la imagen -->
+                                                        @if ($fotosusuarios->isNotEmpty())
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                @php
+                                                                    $firstFoto = $fotosusuarios->first();
+                                                                    $userImagePath = $firstFoto->ruta_imagen;
+                                                                    $userAvatarPath = public_path($userImagePath);
+                                                                @endphp
+
+                                                                @if (file_exists($userAvatarPath))
+                                                                    <img src="{{ asset($userImagePath) }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @else
+                                                                    <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @endif
+                                                            </div>
+                                                        @else
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                    alt="user" class="avatar-img">
+                                                            </div>
+                                                        @endif
+
+
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="btn btn-soft-primary btn-file mb-1">
@@ -187,13 +210,35 @@
                                             <div class="form-group">
                                                 <div class="media align-items-center">
                                                     <div class="media-head me-5">
-                                                        <!-- Tu lógica para mostrar la imagen -->
+                                                        @if ($fotosusuarios->isNotEmpty())
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                @php
+                                                                    $secondFoto = $fotosusuarios->get(1); // Acceder al segundo elemento (índice 1)
+                                                                    $userImagePath = $secondFoto->ruta_imagen;
+                                                                    $userAvatarPath = public_path($userImagePath);
+                                                                @endphp
+
+                                                                @if (file_exists($userAvatarPath))
+                                                                    <img src="{{ asset($userImagePath) }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @else
+                                                                    <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @endif
+                                                            </div>
+                                                        @else
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                    alt="user" class="avatar-img">
+                                                            </div>
+                                                        @endif
+
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="btn btn-soft-primary btn-file mb-1">
                                                             Upload Photo
-                                                            <input type="file" name="photo_1" class="upload"
-                                                                id="photo_1">
+                                                            <input type="file" name="photo_2" class="upload"
+                                                                id="photo_2">
                                                         </div>
                                                         <div class="form-text text-muted">
                                                             Esta imagen es la que usará la IA para detectarte
@@ -216,13 +261,34 @@
                                             <div class="form-group">
                                                 <div class="media align-items-center">
                                                     <div class="media-head me-5">
-                                                        <!-- Tu lógica para mostrar la imagen -->
+                                                        @if ($fotosusuarios->isNotEmpty())
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                @php
+                                                                    $secondFoto = $fotosusuarios->get(2); // Acceder al segundo elemento (índice 1)
+                                                                    $userImagePath = $secondFoto->ruta_imagen;
+                                                                    $userAvatarPath = public_path($userImagePath);
+                                                                @endphp
+
+                                                                @if (file_exists($userAvatarPath))
+                                                                    <img src="{{ asset($userImagePath) }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @else
+                                                                    <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                        alt="user" class="avatar-img">
+                                                                @endif
+                                                            </div>
+                                                        @else
+                                                            <div class="avatar avatar-rounded avatar-xxl">
+                                                                <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
+                                                                    alt="user" class="avatar-img">
+                                                            </div>
+                                                        @endif
                                                     </div>
                                                     <div class="media-body">
                                                         <div class="btn btn-soft-primary btn-file mb-1">
                                                             Upload Photo
-                                                            <input type="file" name="photo_1" class="upload"
-                                                                id="photo_1">
+                                                            <input type="file" name="photo_3" class="upload"
+                                                                id="photo_3">
                                                         </div>
                                                         <div class="form-text text-muted">
                                                             Esta imagen es la que usará la IA para detectarte
