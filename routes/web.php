@@ -71,4 +71,16 @@ Route::group(['middleware' => ['auth', 'can:Cliente']], function () {
     Route::get('abrir_fotos_catalogos/{id_catalogo}', [FotosController::class, 'abrir_fotos_catalogos'])->name('abrir_fotos_catalogos');
 
     Route::get('abrir_suscripciones', [HomeController::class, 'abrir_suscripciones'])->name('abrir_suscripciones');
+        // Rutas Autenticadas que solo pueden ser accedidas por usuarios con el rol "Organizador"
+        Route::get('abrir_creareventos', [EventoSocialesController::class, 'abrir_creareventos'])->name('abrir_creareventos');
+        Route::post('registrar_evento', [EventoSocialesController::class, 'registrar_evento'])->name('registrar_evento');
+        Route::get('abrir_alleventos', [EventoSocialesController::class, 'abrir_alleventos'])->name('abrir_alleventos');
+        Route::delete('/eventos/{id}', [EventoSocialesController::class, 'eliminarEvento'])->name('eliminarEvento');
+        Route::get('/getevento/{id}', [EventoSocialesController::class, 'getevento'])->name('getevento');
+    
+    
+    
+        Route::get('abrir_registrarinvitado/{id_evento}', [EventoSocialesController::class, 'abrir_registrarinvitado'])->name('abrir_registrarinvitado');
+        Route::post('registrar_invitacion', [EventoSocialesController::class, 'registrar_invitacion'])->name('registrar_invitacion');
+        Route::get('marcar_asistenciaqr/{invitacionId}', [EventoSocialesController::class, 'marcar_asistenciaqr'])->name('marcar_asistenciaqr');
 });

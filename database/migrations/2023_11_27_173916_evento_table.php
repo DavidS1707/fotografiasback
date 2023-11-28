@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->unsignedBigInteger('organizador_id'); // Agrega una clave foránea a 'users'
             $table->foreign('organizador_id')->references('id')->on('users');
+            $table->unsignedBigInteger('fotografo_id'); // Agrega una clave foránea a 'users'
+            $table->foreign('fotografo_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

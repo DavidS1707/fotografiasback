@@ -52,7 +52,7 @@ class EventoSocialesController extends Controller
             'ubicacion' => 'required',
 
             'descripcion' => 'required',
-            'fotografos' => 'required',
+            'fotografo' => 'required',
         ], [
             'titulo_evento.required' => 'El título del evento es requerido.',
             'single-date-pick.required' => 'La fecha del evento es requerida.',
@@ -60,7 +60,7 @@ class EventoSocialesController extends Controller
             'ubicacion.required' => 'La ubicación del evento es requerida.',
 
             'descripcion.required' => 'La descripción del evento es requerida.',
-            'fotografos.required' => 'Es requerido elegir un fotografo .',
+            'fotografo.required' => 'Es requerido elegir un fotografo .',
         ]);
 
 
@@ -73,19 +73,13 @@ class EventoSocialesController extends Controller
         $evento->hora_evento = $request->input('input-timepicker');
         $evento->ubicacion = $request->input('ubicacion');
         $evento->organizador_id = auth()->user()->id;
+        $evento->fotografo_id = $request->fotografo;
 
         $evento->save();
         $directorioEvento = "public/eventos/evento_{$evento->id}";
         Storage::makeDirectory($directorioEvento);
 
-        if ($request->has('fotografos')) {
-            foreach ($request->input('fotografos') as $fotografoId) {
-                Fotografo_Evento::create([
-                    'evento_id' => $evento->id,
-                    'fotografo_id' => $fotografoId,
-                ]);
-            }
-        }
+    
 
         // Devolver la ruta del código QR
         return redirect()->route('abrir_alleventos');
