@@ -43,10 +43,46 @@
                     <p>{{ Auth::user()->name }}</p>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
 
-        @livewire('pagos')
-        @livewire('subscription')
+        <div class="clearfix"></div>
+        <br />
+
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <a href="{{ route('abrir_creareventos') }}" class="btn btn-primary" onclick="openForm()">Crear Nuevo
+                        Evento</a>
+                </div>
+            </div>
+
+            @if (count($eventos) > 0)
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Evento</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($eventos as $evento)
+                            <tr>
+                                <td>{{ $evento->titulo_evento }}</td>
+                                <td>
+                                    <a href="{{ route('ver_fotos_evento', ['id_evento' => $evento->id]) }}"
+                                        class="btn btn-info">Ver Fotos</a>
+                                    <!-- Puedes agregar más acciones según tus necesidades -->
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p>No tienes ningún evento.</p>
+            @endif
+        </div>
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
@@ -74,11 +110,6 @@
             });
         </script>
     </div>
-    @stack('modals')
-
-    @livewireScripts
-
-    @stack('js')
 </body>
 
 
