@@ -29,6 +29,7 @@
         </form>
 
     </div>
+
     <div id="main">
 
         <div class="head">
@@ -50,312 +51,199 @@
         <br />
 
         <div class="row edit-profile-wrap">
-            <div class="col-lg-2 col-sm-3 col-4">
-                <div class="nav-profile mt-4">
-                    <div class="nav-header">
-                        <span>Cuenta</span>
-                    </div>
-                    <ul class="nav nav-light nav-vertical nav-tabs">
-
-                        <li class="nav-item">
-                            <a data-bs-toggle="tab" href="#tab_block_1" class="nav-link active">
-                                <span class="nav-link-text">Perfil Personal</span>
-                            </a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a data-bs-toggle="tab" href="#tab_block_4" class="nav-link">
-                                <span class="nav-link-text">Cambiar Contraseña</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="tab" href="#tab_block_5" class="nav-link">
-                                <span class="nav-link-text">3 Fotografias</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
             <div class="col-lg-10 col-sm-9 col-8">
                 <div class="tab-content">
-
                     <div class="tab-pane fade show active" id="tab_block_1">
-                        <form action="{{ route('update_perfil') }}" method="POST">
+                        <form action="{{ route('update_perfil') }}" method="POST" class="w-100">
                             @csrf
 
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="media align-items-center">
-                                            <div class="media-head me-5">
-                                                <div class="avatar avatar-rounded avatar-xxl">
-
-                                                    <img src="{{ asset('storage/' . Auth::user()->profile_image_path) }}"
-                                                        class="avatar-img" alt="Tu Foto de Perfil">
-                                                </div>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="btn btn-soft-primary btn-file mb-1">
-                                                    Upload Photo
-                                                    <input type="file" class="upload">
-                                                </div>
-                                                <div class="form-text text-muted">
-                                                    Para una mejor vista previa, el tamaño recomendado es 450 px x 450
-                                                    px.
-                                                    Tamaño máximo 2mb.
-                                                </div>
-                                            </div>
+                            <div class="card card-border">
+                                <div class="card-body">
+                                    <div class="title title-xs title-wth-divider text-primary text-uppercase my-4">
+                                        <span>Informacion Personal</span>
+                                    </div>
+                                    <div class="row gx-3">
+                                        <div class="form-group col-lg-12">
+                                            <label class="form-label">Nombre Completo</label>
+                                            <input class="form-control @error('name') is-invalid @enderror"
+                                                type="text" id="name" name="name"
+                                                value="{{ $datos['name'] }}" />
+                                            @error('name')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="title title-xs title-wth-divider text-primary text-uppercase my-4">
-                                <span>Informacion Personal</span>
-                            </div>
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Nombre Completo</label>
-                                        <input class="form-control @error('name') is-invalid @enderror" type="text"
-                                            id="name" name="name" value="{{ $datos['name'] }}" />
-                                        @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    <div class="row gx-3">
+                                        <div class="form-group col-lg-12">
+                                            <label class="form-label">Correo</label>
+                                            <input class="form-control @error('email') is-invalid @enderror"
+                                                type="email" id="email" name="email"
+                                                value="{{ $datos['email'] }}" />
+                                            @error('email')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
+
+                                    <input type="hidden" id="business_id" name="business_id"
+                                        value="{{ $datos->empresa_id }}">
+                                    <input type="hidden" id="rol_id" name="rol_id" value="{{ $datos->rol_id }}">
+                                    <button type="submit"
+                                        class="btn btn-primary mt-5 btn-rounded btn-uppercase btn-block">Guardar
+                                        Cambios</button>
                                 </div>
                             </div>
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label class="form-label">Correo</label>
-                                        <input class="form-control @error('email') is-invalid @enderror" type="email"
-                                            id="email" name="email" value="{{ $datos['email'] }}" />
-                                        @error('email')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <input type="hidden" id="business_id" name="business_id"
-                                value="{{ $datos->empresa_id }}">
-                            <input type="hidden" id="rol_id" name="rol_id" value="{{ $datos->rol_id }}">
-                            <button type="submit" class="btn btn-primary mt-5">Guardar Cambios</button>
                         </form>
                     </div>
-
                     <div class="tab-pane fade" id="tab_block_4">
-                        <div class="title-lg fs-4"><span>Cambiar Contraseña</span></div>
-
-                        <form id="cambiarContraseñaForm">
+                        <form id="cambiarContraseñaForm" class="w-100">
                             @csrf
-                            <div class="title title-xs title-wth-divider text-primary text-uppercase my-4">
-                                <span>Actualizar Contraseña</span>
-                            </div>
-                            <div class="row gx-3">
-                                <div id="mensaje"></div>
-
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Contraseña Antigua</label>
-                                        <input class="form-control @error('antigua_contraseña') is-invalid @enderror"
-                                            type="password" id="antigua_contraseña" name="antigua_contraseña"
-                                            required />
-                                        @error('antigua_contraseña')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                            <div class="card card-border">
+                                <div class="card-body">
+                                    <div class="title title-xs title-wth-divider text-primary text-uppercase my-4">
+                                        <span>Actualizar Contraseña</span>
                                     </div>
+                                    <div class="row gx-3">
+                                        <div id="mensaje"></div>
 
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Contraseña Antigua</label>
+                                                <input
+                                                    class="form-control @error('antigua_contraseña') is-invalid @enderror"
+                                                    type="password" id="antigua_contraseña" name="antigua_contraseña"
+                                                    required />
+                                                @error('antigua_contraseña')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
 
-                                </div>
-                                <div class="col-sm-6">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Contraseña Nueva</label>
+                                                <input
+                                                    class="form-control @error('nueva_contraseña') is-invalid @enderror"
+                                                    type="password" id="nueva_contraseña" name="nueva_contraseña"
+                                                    required />
+                                                @error('nueva_contraseña')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label class="form-label">Contraseña Nueva</label>
-                                        <input class="form-control @error('nueva_contraseña') is-invalid @enderror"
-                                            type="password" id="nueva_contraseña" name="nueva_contraseña" required />
-                                        @error('nueva_contraseña')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <button type="submit"
+                                            class="btn btn-primary mt-3 btn-rounded btn-uppercase btn-block">Cambiar
+                                            Contraseña</button>
                                     </div>
-
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-3">Cambiar Contraseña</button>
                             </div>
-
-
                         </form>
                     </div>
                     <div class="tab-pane fade" id="tab_block_5">
                         <form action="{{ route('registrar_3imagenes') }}" method="POST"
-                            enctype="multipart/form-data">
+                            enctype="multipart/form-data" class="w-100">
                             @csrf
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="title-lg fs-4">
-                                    <span>3 IMÁGENES TUYAS</span>
-                                </div>
-                                <button type="submit" class="btn btn-primary ms-2">Guardar Cambios</button>
-                            </div>
+                            <div class="card card-border">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="title-lg fs-4">
+                                            <span>OBLIGATORIO SUBIR 3 IMÁGENES TUYAS</span>
+                                        </div>
+                                    </div>
 
-                            <!-- Primer Input -->
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="media align-items-center">
-                                            <div class="media-head me-5">
-                                                @if ($fotosusuarios->isNotEmpty())
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        @php
-                                                            $firstFoto = $fotosusuarios->first();
-                                                            $userImagePath = $firstFoto->ruta_imagen;
-                                                            $userAvatarPath = public_path($userImagePath);
-                                                        @endphp
-
-                                                        @if (file_exists($userAvatarPath))
-                                                            <img src="{{ asset($userImagePath) }}" alt="user"
-                                                                class="avatar-img">
-                                                        @else
-                                                            <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                                alt="user" class="avatar-img">
-                                                        @endif
+                                    <!-- Primer Input -->
+                                    <div class="row gx-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="media align-items-center">
+                                                    <div class="media-head me-5">
+                                                        <!-- Tu lógica para mostrar la imagen -->
                                                     </div>
-                                                @else
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                            alt="user" class="avatar-img">
+                                                    <div class="media-body">
+                                                        <div class="btn btn-soft-primary btn-file mb-1">
+                                                            Upload Photo
+                                                            <input type="file" name="photo_1" class="upload"
+                                                                id="photo_1">
+                                                        </div>
+                                                        <div class="form-text text-muted">
+                                                            Esta imagen es la que usará la IA para detectarte
+                                                        </div>
                                                     </div>
-                                                @endif
-
-
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="btn btn-soft-primary btn-file mb-1">
-                                                    Upload Photo
-                                                    <input type="file" name="photo_1" class="upload"
-                                                        id="photo_1">
-                                                </div>
-                                                <div class="form-text text-muted">
-                                                    Esta imagen es la que usará la IA para detectarte
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="preview-container" style="display:none;">
-                                        <img src="#" alt="Preview" class="preview-image"
-                                            style="max-width: 100%; max-height: 150px;">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Segundo Input -->
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="media align-items-center">
-                                            <div class="media-head me-5">
-                                                @if ($fotosusuarios->isNotEmpty())
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        @php
-                                                            $secondFoto = $fotosusuarios->get(1); // Acceder al segundo elemento (índice 1)
-                                                            $userImagePath = $secondFoto->ruta_imagen;
-                                                            $userAvatarPath = public_path($userImagePath);
-                                                        @endphp
-
-                                                        @if (file_exists($userAvatarPath))
-                                                            <img src="{{ asset($userImagePath) }}" alt="user"
-                                                                class="avatar-img">
-                                                        @else
-                                                            <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                                alt="user" class="avatar-img">
-                                                        @endif
-                                                    </div>
-                                                @else
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                            alt="user" class="avatar-img">
-                                                    </div>
-                                                @endif
-
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="btn btn-soft-primary btn-file mb-1">
-                                                    Upload Photo
-                                                    <input type="file" name="photo_2" class="upload"
-                                                        id="photo_2">
-                                                </div>
-                                                <div class="form-text text-muted">
-                                                    Esta imagen es la que usará la IA para detectarte
-                                                </div>
+                                        <div class="col-sm-12">
+                                            <div class="preview-container" style="display:none;">
+                                                <img src="#" alt="Preview" class="preview-image"
+                                                    style="max-width: 100%; max-height: 150px;">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="preview-container" style="display:none;">
-                                        <img src="#" alt="Preview" class="preview-image"
-                                            style="max-width: 100%; max-height: 150px;">
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Tercer Input -->
-                            <div class="row gx-3">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <div class="media align-items-center">
-                                            <div class="media-head me-5">
-                                                @if ($fotosusuarios->isNotEmpty())
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        @php
-                                                            $secondFoto = $fotosusuarios->get(2); // Acceder al segundo elemento (índice 1)
-                                                            $userImagePath = $secondFoto->ruta_imagen;
-                                                            $userAvatarPath = public_path($userImagePath);
-                                                        @endphp
-
-                                                        @if (file_exists($userAvatarPath))
-                                                            <img src="{{ asset($userImagePath) }}" alt="user"
-                                                                class="avatar-img">
-                                                        @else
-                                                            <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                                alt="user" class="avatar-img">
-                                                        @endif
+                                    <!-- Segundo Input -->
+                                    <div class="row gx-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="media align-items-center">
+                                                    <div class="media-head me-5">
+                                                        <!-- Tu lógica para mostrar la imagen -->
                                                     </div>
-                                                @else
-                                                    <div class="avatar avatar-rounded avatar-xxl">
-                                                        <img src="{{ asset('assets/dist/img/avatar3.jpg') }}"
-                                                            alt="user" class="avatar-img">
+                                                    <div class="media-body">
+                                                        <div class="btn btn-soft-primary btn-file mb-1">
+                                                            Upload Photo
+                                                            <input type="file" name="photo_1" class="upload"
+                                                                id="photo_1">
+                                                        </div>
+                                                        <div class="form-text text-muted">
+                                                            Esta imagen es la que usará la IA para detectarte
+                                                        </div>
                                                     </div>
-                                                @endif
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="btn btn-soft-primary btn-file mb-1">
-                                                    Upload Photo
-                                                    <input type="file" name="photo_3" class="upload"
-                                                        id="photo_3">
-                                                </div>
-                                                <div class="form-text text-muted">
-                                                    Esta imagen es la que usará la IA para detectarte
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <div class="preview-container" style="display:none;">
+                                                <img src="#" alt="Preview" class="preview-image"
+                                                    style="max-width: 100%; max-height: 150px;">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12">
-                                    <div class="preview-container" style="display:none;">
-                                        <img src="#" alt="Preview" class="preview-image"
-                                            style="max-width: 100%; max-height: 150px;">
+
+                                    <!-- Tercer Input -->
+                                    <div class="row gx-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="media align-items-center">
+                                                    <div class="media-head me-5">
+                                                        <!-- Tu lógica para mostrar la imagen -->
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="btn btn-soft-primary btn-file mb-1">
+                                                            Upload Photo
+                                                            <input type="file" name="photo_1" class="upload"
+                                                                id="photo_1">
+                                                        </div>
+                                                        <div class="form-text text-muted">
+                                                            Esta imagen es la que usará la IA para detectarte
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="preview-container" style="display:none;">
+                                                <img src="#" alt="Preview" class="preview-image"
+                                                    style="max-width: 100%; max-height: 150px;">
+                                            </div>
+                                        </div>
                                     </div>
+                                    <button type="submit"
+                                        class="btn btn-primary ms-2 btn-rounded btn-uppercase">Guardar
+                                        Cambios</button>
                                 </div>
                             </div>
-
                         </form>
-
                     </div>
                 </div>
             </div>

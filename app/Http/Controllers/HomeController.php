@@ -31,10 +31,7 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
         $datos = User::where('users.id', $userId)
-        ->select('*')->first();
-
-        
-
+            ->select('*')->first();
         return view('subs')->with('datos', $datos);
     }
 }

@@ -294,3 +294,28 @@ td, th {
 .btn-cancel:hover {
   background-color: #f7403b; /* Cambia a rojo en el estado hover */
 }
+
+.title-xs span,
+.title-lg span,
+.title-wth-divider span {
+    font-size: 1.2em; /* Ajusta el tamaño de la letra según sea necesario */
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.d-flex .fs-4 span {
+    font-size: 1.5em; /* Ajusta el tamaño de la letra según sea necesario */
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+#card-holder-name,
+#card-element,
+#card-error-message {
+    font-size: 16px; /* Tamaño de fuente ajustado */
+}
+
+#card-button {
+    font-size: 18px; /* Tamaño de fuente ajustado para el botón */
+}
