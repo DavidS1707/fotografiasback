@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('catalogos', function (Blueprint $table) {
             $table->id();
             $table->string('title_catalogo'); 
-            $table->integer('precio_catalogo'); 
+            $table->integer('precio_catalogo')->nullable(); 
             $table->unsignedBigInteger('evento_id'); 
             $table->foreign('evento_id')->references('id')->on('eventos');
             $table->unsignedBigInteger('fotografo_id'); 

@@ -47,8 +47,9 @@ class FotosController extends Controller
         //dd($catalogos,$catalogosConFotos);
 
         $evento = Eventos::where('eventos.id', $id_evento)->select('*')->first();
+        
 
-        return view('fotografia.subir-fotos-eventos')->with('datos', $datos)->with('evento', $evento)->with('catalogos', $catalogos);
+        return view('Cat_Fotos.crear-cat')->with('datos', $datos)->with('evento', $evento)->with('catalogos', $catalogos);
     }
     public function abrir_fotos_catalogos($id_catalogo)
     {
