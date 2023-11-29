@@ -18,11 +18,8 @@
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
         <a href="{{ route('abrir_miusuario') }}" class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
-        <a href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();" <i
-            class="fa fa-sign-out icons"></i>
-            {{ __('Cerrar Sesión') }}
+        <a href="#" onclick="confirmLogout()">
+            <i class="fa fa-sign-out icons"></i> Cerrar Sesión
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
@@ -225,6 +222,12 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+            function confirmLogout() {
+                var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+                if (confirmLogout) {
+                    document.getElementById('logout-form').submit();
+                }
+            }
             $(".nav").click(function() {
                 $("#mySidenav").css('width', '70px');
                 $("#main").css('margin-left', '70px');
