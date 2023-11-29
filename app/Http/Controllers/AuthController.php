@@ -47,6 +47,7 @@ class AuthController extends Controller
         //si el email se encontro 
         if ($user && Hash::check($req->password, $user->password)) {
             $token = $user->createToken('Personal Acces Token')->plainTextToken;
+            $user->update(['firebase_token' => $req->fcm_token]);
             $response = ['user' => $user, 'token' => $token];
             return response()->json($response, 200);
         }

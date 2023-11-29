@@ -5,11 +5,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Eventos\EventoSocialesController;
 use App\Http\Controllers\Fotografia\FotosController;
 use App\Http\Controllers\UsersController;
-use App\Http\Controllers\EventoController;
-use App\Http\Controllers\FotografoController;
-use App\Http\Controllers\InvitadosController;
-use App\Http\Controllers\PagoDigitalController;
-use App\Http\Controllers\SuscripcionController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -83,16 +78,16 @@ Route::group(['middleware' => ['auth', 'can:Cliente']], function () {
     Route::get('marcar_asistenciaqr/{invitacionId}', [EventoSocialesController::class, 'marcar_asistenciaqr'])->name('marcar_asistenciaqr');
 
     Route::get('abrir_suscripciones', [HomeController::class, 'abrir_suscripciones'])->name('abrir_suscripciones');
-        // Rutas Autenticadas que solo pueden ser accedidas por usuarios con el rol "Organizador"
-        Route::get('abrir_creareventos', [EventoSocialesController::class, 'abrir_creareventos'])->name('abrir_creareventos');
-        Route::post('registrar_evento', [EventoSocialesController::class, 'registrar_evento'])->name('registrar_evento');
-        Route::get('abrir_alleventos', [EventoSocialesController::class, 'abrir_alleventos'])->name('abrir_alleventos');
-        Route::delete('/eventos/{id}', [EventoSocialesController::class, 'eliminarEvento'])->name('eliminarEvento');
-        Route::get('/getevento/{id}', [EventoSocialesController::class, 'getevento'])->name('getevento');
-    
-    
-    
-        Route::get('abrir_registrarinvitado/{id_evento}', [EventoSocialesController::class, 'abrir_registrarinvitado'])->name('abrir_registrarinvitado');
-        Route::post('registrar_invitacion', [EventoSocialesController::class, 'registrar_invitacion'])->name('registrar_invitacion');
-        Route::get('marcar_asistenciaqr/{invitacionId}', [EventoSocialesController::class, 'marcar_asistenciaqr'])->name('marcar_asistenciaqr');
+    // Rutas Autenticadas que solo pueden ser accedidas por usuarios con el rol "Organizador"
+    Route::get('abrir_creareventos', [EventoSocialesController::class, 'abrir_creareventos'])->name('abrir_creareventos');
+    Route::post('registrar_evento', [EventoSocialesController::class, 'registrar_evento'])->name('registrar_evento');
+    Route::get('abrir_alleventos', [EventoSocialesController::class, 'abrir_alleventos'])->name('abrir_alleventos');
+    Route::delete('/eventos/{id}', [EventoSocialesController::class, 'eliminarEvento'])->name('eliminarEvento');
+    Route::get('/getevento/{id}', [EventoSocialesController::class, 'getevento'])->name('getevento');
+
+
+
+    Route::get('abrir_registrarinvitado/{id_evento}', [EventoSocialesController::class, 'abrir_registrarinvitado'])->name('abrir_registrarinvitado');
+    Route::post('registrar_invitacion', [EventoSocialesController::class, 'registrar_invitacion'])->name('registrar_invitacion');
+    Route::get('marcar_asistenciaqr/{invitacionId}', [EventoSocialesController::class, 'marcar_asistenciaqr'])->name('marcar_asistenciaqr');
 });

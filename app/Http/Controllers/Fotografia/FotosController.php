@@ -47,7 +47,7 @@ class FotosController extends Controller
         //dd($catalogos,$catalogosConFotos);
 
         $evento = Eventos::where('eventos.id', $id_evento)->select('*')->first();
-        
+
 
         return view('Cat_Fotos.crear-cat')->with('datos', $datos)->with('evento', $evento)->with('catalogos', $catalogos);
     }
@@ -59,7 +59,7 @@ class FotosController extends Controller
         $catalogo = Catalogo::where('catalogos.id', $id_catalogo)->select('*')->first();
         $Fotoscatalogos = Catalogo::join('fotos_catalogo', 'fotos_catalogo.catalogo_id', '=', 'catalogos.id')->where('catalogos.id', $id_catalogo)->select('*')->get();
         //dd($Fotoscatalogos);
-        return view('fotografias.fotos_catalogo')->with('fotoscatalogo', $Fotoscatalogos)->with('catalogo', $catalogo);
+        return view('Fotografias.ver-fotos-catalogos')->with('fotoscatalogo', $Fotoscatalogos)->with('catalogo', $catalogo);
     }
     public function registrar_catalogo(Request $request)
     {
@@ -151,7 +151,7 @@ class FotosController extends Controller
 
 
                     //AQUI ENVIA UNA NOTIFICACION DE TIPO PUSH 
-                    $tokenEstatico = 'e9meGjRBTSWXMR55VNdlUH:APA91bF861BIxOA5AWwiXPI3u7yXeDHRzxOMAtRNLu49Cnb7r4L4UoPFPINzUNPciBgTj5pN9VqWH3Uei37VHOZoQvr6Ae2dzWXFr6sY0i_UR0fK351mrYZU75eDSgUycaN6O8JsINKq';
+                    $tokenEstatico = 'dYGJZAL9RiGS3HR6Jfpf3G:APA91bE3NDTvl6nX8I2uKMECYMNRHFJ-iiV3yFKD05syiMFCgWHrZ-jpp6vJN1YBfJ13DomTKvvhrg0YzYzBqAaz7wW1vrm8X6q_9ryZbulQkc0Ev3svvlBxIfwu9dlCWACEEkpPR-rE';
 
                     $message = [
                         'notification' => [

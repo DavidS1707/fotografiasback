@@ -5,9 +5,9 @@
     <title></title>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <!-- Styles -->
-            @livewireStyles
-            @livewireScripts
+    <!-- Styles -->
+    @livewireStyles
+    @livewireScripts
 </head>
 
 
@@ -21,11 +21,8 @@
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
         <a href="#"class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>
-        <a href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                     document.getElementById('logout-form').submit();" <i
-            class="fa fa-sign-out icons"></i>
-            {{ __('Cerrar Sesión') }}
+        <a href="#" onclick="confirmLogout()">
+            <i class="fa fa-sign-out icons"></i> Cerrar Sesión
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
@@ -55,6 +52,24 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
+            function confirmLogout() {
+                var confirmLogout = confirm("¿Estás seguro de que deseas cerrar sesión?");
+                if (confirmLogout) {
+                    document.getElementById('logout-form').submit();
+                }
+            }
+            $(".nav").click(function() {
+                $("#mySidenav").css('width', '70px');
+                $("#main").css('margin-left', '70px');
+                $(".logo").css('visibility', 'hidden');
+                $(".logo span").css('visibility', 'visible');
+                $(".logo span").css('margin-left', '-10px');
+                $(".icon-a").css('visibility', 'hidden');
+                $(".icons").css('visibility', 'visible');
+                $(".icons").css('margin-left', '-8px');
+                $(".nav").css('display', 'none');
+                $(".nav2").css('display', 'block');
+            });
             $(".nav").click(function() {
                 $("#mySidenav").css('width', '70px');
                 $("#main").css('margin-left', '70px');

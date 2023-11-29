@@ -9,12 +9,14 @@
 
 
 <body>
-
+    {{-- {{ route('abrir_fotos_catalogos', $catalogo->title_catalogo) }} --}}
     <div id="mySidenav" class="sidenav">
         <p class="logo"><span>2do</span>Parcial</p>
         <a href="{{ route('home') }}" class="icon-a"><i class="fa fa-dashboard icons"></i> Dashboard</a>
         <a href="{{ route('abrir_alleventos') }}" class="icon-a"><i class="fa fa-calendar icons"></i> Eventos</a>
-        <a href="#"class="icon-a"><i class="fa fa-list icons"></i> Catálogo de fotos</a>
+        <a href="" class="icon-a"><i class="fa fa-list icons"></i>
+            Catálogo de
+            fotos</a>
         <a href="{{ route('abrir_suscripciones') }}"class="icon-a"><i class="fa fa-shopping-bag icons"></i>
             Suscripciones</a>
         <a href="{{ route('abrir_miusuario') }}" class="icon-a"><i class="fa fa-user icons"></i> Cuenta</a>

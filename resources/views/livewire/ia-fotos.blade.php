@@ -3,10 +3,9 @@
         @csrf
         <label class="form-label">Catalogo</label>
         <p>Valor de $evento: {{ $evento['id'] }}</p>
-        <input class=" "
-            id="titulo_catalogo" name="titulo_catalogo" wire:model="titulo_catalogo" type="text"
+        <input class=" " id="titulo_catalogo" name="titulo_catalogo" wire:model="titulo_catalogo" type="text"
             value="{{ old('titulo_catalogo') }}">
-            <input type="hidden" id="id_evento" name="id_evento" wire:model="id_evento" value="HOLAAA">
+        <input type="hidden" id="id_evento" name="id_evento" wire:model="id_evento" value="HOLAAA">
 
         <input type="file" name="imagen[]" id="imagen" wire:model="imagen" multiple>
         <button type="submit" class="px-2 py-1 bg-red-600" wire:click=''>Guardar</button>
@@ -32,14 +31,15 @@
 
             function loadLabeledImages() {
                 //nombre de las carpetas(usuarios)
-                
+
                 const labels = usuarios.flat();
                 return Promise.all(
                     labels.map(async label => {
                         const descriptions = [];
                         for (let i = 1; i <= 3; i++) {
                             //console.log(label)
-                            const img = await faceapi.fetchImage(`/storage/UsuariosFotos/${label}/${i}.jpg`);
+                            const img = await faceapi.fetchImage(
+                                `/storage/UsuariosFotos/${label}/${i}.jpg`);
                             const detections = await faceapi.detectSingleFace(img).withFaceLandmarks()
                                 .withFaceDescriptor();
                             descriptions.push(detections.descriptor);
@@ -96,8 +96,10 @@
                             idusuarios.push(result[j].label);
                         };
                     }
-                    console.log('estos son los usuarios en esa foto',idusuarios);
-                    Livewire.dispatch('notiAparecesFoto', {idusuarios: idusuarios});
+                    console.log('estos son los usuarios en esa foto', idusuarios);
+                    Livewire.dispatch('notiAparecesFoto', {
+                        idusuarios: idusuarios
+                    });
                 })
                 btnNotificaciones.click()
 
@@ -108,4 +110,3 @@
         });
     </script>
 </div>
-
