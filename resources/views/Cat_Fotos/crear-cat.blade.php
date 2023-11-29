@@ -5,6 +5,9 @@
     <title></title>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <!-- Styles -->
+            @livewireStyles
+            @livewireScripts
 </head>
 
 
@@ -48,76 +51,7 @@
         <div class="clearfix"></div>
         <br />
 
-        <form class="w-100" method="POST" action="{{ route('registrar_evento') }}">
-            @csrf
-            <div class="card card-border">
-                <div class="card-body">
-                    <div class="row gx-3">
-                        <div class="form-group col-lg-12">
-                            <label class="form-label">Nombre del evento</label>
-                            <input class="form-control  @error('titulo_evento') is-invalid @enderror" id="titulo_evento"
-                                name="titulo_evento" name="titulo_evento" type="text"
-                                value="{{ old('titulo_evento') }}">
-                            @error('titulo_evento')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="form-label">Fecha</label>
-                                <input class="form-control cal-event-date-start" id="fecha" name="single-date-pick"
-                                    type="text" />
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="form-label">Hora</label>
-                                <input class="form-control input-single-timepicker" id="evento"
-                                    name="input-timepicker" type="text" />
-                            </div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label class="form-label">Ubicacion</label>
-                            <input class="form-control @error('ubicacion') is-invalid @enderror" id="ubicacion"
-                                name="ubicacion" type="text" value="{{ old('ubicacion') }}">
-                            @error('ubicacion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label class="form-label">Fotografo</label>
-                            <select id="fotografos" name="fotografos[]"
-                                class="form-select me-3 @error('fotografos') is-invalid @enderror" style="width: 100%;"
-                                multiple>
-                                @foreach ($fotografos as $fotografo)
-                                    <option value="{{ $fotografo->id }}">{{ $fotografo->name }}</option>
-                                    <!-- Reemplaza 'id' y 'name' con los nombres de los campos correspondientes en tu modelo User -->
-                                @endforeach
-                            </select>
-
-                            @error('fotografo')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <label class="form-label">Descripcion</label>
-                            <textarea id="descripcion" name="descripcion" class="form-control @error('descripcion') is-invalid @enderror"
-                                rows="3"></textarea>
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <input type="hidden" id="id_organizador" name="id_organizador" value="{{ $datos->id }}">
-
-                    <button type="submit" class="btn btn-primary btn-rounded btn-uppercase btn-block">Registrar
-                        Evento</button>
-                    <a href="{{ route('abrir_alleventos') }}"
-                        class="btn btn-cancel btn-rounded btn-uppercase btn-block">Cancelar</a>
-
-                </div>
-            </div>
-        </form>
+        @livewire('ia-fotos', ['evento' => $evento])
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
@@ -145,6 +79,7 @@
             });
         </script>
     </div>
+    @stack('modals')
 </body>
 
 
